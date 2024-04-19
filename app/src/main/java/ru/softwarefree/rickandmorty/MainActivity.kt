@@ -2,38 +2,28 @@ package ru.softwarefree.rickandmorty
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import ru.softwarefree.rickandmorty.databinding.ActivityMainBinding
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var bottomNavigationView: BottomNavigationView
-
+    private lateinit var navController: NavController
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.action_list -> {
-                    replaceFragment(ListFragment())
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.action_favorites -> {
-                    replaceFragment(FavoritesFragment())
-                    return@setOnNavigationItemSelectedListener true
-                }
-                else -> false
-            }
-        }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        bottomNavigationView.selectedItemId = R.id.action_list
-    }
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
 
-    private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.frame_container, fragment)
-            .commit()
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigation.setupWithNavController(navController)
     }
 }
