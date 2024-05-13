@@ -3,10 +3,11 @@ package ru.softwarefree.rickandmorty
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import ru.softwarefree.rickandmorty.databinding.ActivityMainBinding
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import ru.softwarefree.rickandmorty.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
