@@ -48,6 +48,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
 
     implementation("androidx.room:room-runtime:2.6.1")
+    implementation(libs.common)
     annotationProcessor("androidx.room:room-compiler:2.6.1")
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")

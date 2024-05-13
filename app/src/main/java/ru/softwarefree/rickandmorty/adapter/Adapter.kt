@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import ru.softwarefree.rickandmorty.R
 import ru.softwarefree.rickandmorty.databinding.ListItemBinding
 import ru.softwarefree.rickandmorty.retrofit.Character
@@ -19,6 +21,10 @@ class Adapter : ListAdapter<Character, Adapter.Holder>(Comparator()) {
             species.text = character.species
             type.text = character.type
             gender.text = character.gender
+            Glide.with(imageView.context)
+                .load(character.image)
+                .apply(RequestOptions().override(400, 400))
+                .into(imageView)
         }
     }
     class Comparator : DiffUtil.ItemCallback<Character>() {
